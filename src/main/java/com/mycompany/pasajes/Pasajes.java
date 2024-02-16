@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.pasajes;
 
-/**
- *
- * @author labctr
- */
+import frontend.MenuJFrame;
+
 public class Pasajes {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        MenuJFrame menu = new MenuJFrame();
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
     }
 }
