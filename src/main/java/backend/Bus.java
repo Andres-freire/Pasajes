@@ -9,8 +9,8 @@ package backend;
  * @author Dell l
  */
 public class Bus extends Vehiculo {
-    public double Bus(double tarifa, double distancia){
-        double precio= tarifa*(0.5/distancia);
+    public double Bus( double distancia){
+        double precio= (0.5/distancia);
         return precio;
     }
 }

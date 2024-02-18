@@ -11,16 +11,16 @@ package backend;
 public class Precio {
  
     public double calcular(Vehiculo vehiculo) {
-        double tarifa = vehiculo.getTarifa();
+      
         double distancia = vehiculo.getDistancia();
         
        
         switch (vehiculo) {
             case Taxi taxi -> {
-                return taxi.Taxi(tarifa, distancia);
+                return taxi.Taxi( distancia);
             }
             case Bus bus -> {
-                return bus.Bus(tarifa, distancia);
+                return bus.Bus( distancia);
             }
             default -> throw new IllegalArgumentException("Tipo de vehículo no admitido");
         }

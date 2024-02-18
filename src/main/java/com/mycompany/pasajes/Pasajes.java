@@ -15,11 +15,11 @@ public class Pasajes {
         Precio precio = new Precio();
        
         Taxi taxi = new Taxi();
-        taxi.setTarifa(10.0); 
+      
         taxi.setDistancia(20.0); 
        
         Bus bus = new Bus();
-        bus.setTarifa(10.0); 
+     
         bus.setDistancia(20.0);   
         double precioTaxi = precio.calcular(taxi);
         System.out.println("Precio del taxi: " + precioTaxi);
