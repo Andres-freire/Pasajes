@@ -10,7 +10,7 @@ package backend;
  */
 public class Taxi extends Vehiculo {
  public double Taxi (double distancia){
-     double precio= (1.5/distancia);
+     double precio= (1.5/3)*distancia;
      return precio;   
  }   
 }

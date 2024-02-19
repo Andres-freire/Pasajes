@@ -10,7 +10,7 @@ package backend;
  */
 public class Bus extends Vehiculo {
     public double Bus( double distancia){
-        double precio= (0.5/distancia);
+        double precio= (0.5/8)*distancia;
         return precio;
     }
 }
