@@ -4,6 +4,11 @@
  */
 package frontend;
 
+import backend.Bus;
+import backend.Precio;
+import backend.Taxi;
+import backend.Vehiculo;
+
 /**
  *
  * @author labctr
@@ -15,6 +20,9 @@ public class MenuJFrame extends javax.swing.JFrame {
      */
     public MenuJFrame() {
         initComponents();
+
+        jButtonCalcular.putClientProperty("JButton.buttonType", "roundRect");
+        jTextFieldDistancia.putClientProperty("JComponent.roundRect", true);
     }
 
     /**
@@ -27,28 +35,35 @@ public class MenuJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelTitulo = new javax.swing.JLabel();
+        jComboBoxVehiculos = new javax.swing.JComboBox<>();
+        jLabelDistancia = new javax.swing.JLabel();
+        jTextFieldDistancia = new javax.swing.JTextField();
+        jButtonCalcular = new javax.swing.JButton();
+        jLabelMsj = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setText("jLabel1");
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTitulo.setText("Pasajes");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxVehiculos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBoxVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bus", "Taxi" }));
 
-        jLabel2.setText("jLabel2");
+        jLabelDistancia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelDistancia.setText("Distancia: ");
 
-        jTextField1.setText("jTextField1");
+        jButtonCalcular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonCalcular.setText("Calcular");
+        jButtonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalcularActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("jButton1");
-
-        jLabel3.setText("jLabel3");
+        jLabelMsj.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -57,40 +72,41 @@ public class MenuJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jLabel1))
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabelDistancia)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel2)
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jButton1))
+                        .addGap(95, 95, 95)
+                        .addComponent(jLabelTitulo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(86, 86, 86)
-                        .addComponent(jLabel3)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addComponent(jComboBoxVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelMsj, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(31, 31, 31)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
+                .addComponent(jLabelTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxVehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addComponent(jLabelDistancia)
+                    .addComponent(jTextFieldDistancia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonCalcular)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelMsj, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,6 +122,29 @@ public class MenuJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
+        double distancia = Double.parseDouble(jTextFieldDistancia.getText());
+
+        Vehiculo vehiculo;
+        switch (jComboBoxVehiculos.getSelectedItem().toString()) {
+            case "Taxi" -> vehiculo = new Taxi();
+            case "Bus" -> vehiculo = new Bus();
+            default -> {
+                return;
+            }
+        }
+
+        vehiculo.setDistancia(distancia);
+
+        Precio precioCalculador = new Precio();
+        double precioCalculado = precioCalculador.calcular(vehiculo);
+
+        jTextFieldDistancia.setText("");
+        jLabelMsj.setText("");
+
+        jLabelMsj.setText("El precio del vehículo es: " + precioCalculado);
+    }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,12 +182,12 @@ public class MenuJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButtonCalcular;
+    private javax.swing.JComboBox<String> jComboBoxVehiculos;
+    private javax.swing.JLabel jLabelDistancia;
+    private javax.swing.JLabel jLabelMsj;
+    private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldDistancia;
     // End of variables declaration//GEN-END:variables
 }
