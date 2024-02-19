@@ -143,7 +143,7 @@ public class MenuJFrame extends javax.swing.JFrame {
         jTextFieldDistancia.setText("");
         jLabelMsj.setText("");
 
-        jLabelMsj.setText("El precio del vehículo es: " + precioCalculado);
+        jLabelMsj.setText("El precio del vehículo seleccionado es: " + precioCalculado);
     }//GEN-LAST:event_jButtonCalcularActionPerformed
 
     /**
